@@ -1,5 +1,6 @@
-Folio
-An offline-first, cross-platform e-reader for EPUBs and PDFs. Read anywhere, sync when online, and keep full control over your books and storage.
+## Folio
+
+- An offline-first, cross-platform e-reader for EPUBs and PDFs. Read anywhere, sync when online, and keep full control over your books and storage.
 
 Why Folio?
 Most reading apps depend too much on an internet connection or lock your files into proprietary formats. Folio is built local-first:
