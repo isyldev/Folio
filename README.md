@@ -1,75 +1,50 @@
-# React + TypeScript + Vite
+Folio
+An offline-first, cross-platform e-reader for EPUBs and PDFs. Read anywhere, sync when online, and keep full control over your books and storage.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Why Folio?
+Most reading apps depend too much on an internet connection or lock your files into proprietary formats. Folio is built local-first:
 
-Currently, two official plugins are available:
+Instant & Offline: Your library, notes, and reading position live right on your device. Everything works seamlessly without an internet connection.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Background Sync: When you go online, your progress, highlights, and library metadata sync across all your devices through Supabase.
 
-## React Compiler
+Cross-Platform: Built to run as a web app, a native Windows desktop app (via Tauri), and an Android app (via Capacitor).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Storage Control: Keep large book files purely local or upload them to cloud storage—you choose what syncs.
 
-## Expanding the ESLint configuration
+Tech Stack
+Frontend: React, TypeScript, Vite
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+UI & Components: Tailwind CSS, shadcn/ui, Lucide Icons
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Local Storage: Dexie.js (IndexedDB)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Backend & Cloud Services: Supabase (Auth, PostgreSQL with Row-Level Security, Storage)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Rendering Engines: epub.js for EPUBs, React-PDF for PDFs
 
-```
+Native Wrappers: Tauri for Windows, Capacitor for Android
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+How Sync Works
+The local IndexedDB database is the main source of truth for the app interface. When you make changes—like adding a highlight or updating reading progress—the app updates locally first and places the update into a background sync queue.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+Plaintext
++-------------------------------------------------------------------+
+|                           YOUR DEVICE                             |
+|                                                                   |
+|   React App  <------ Reads / Writes ------>  Dexie.js (IndexedDB) |
+|                                                      |            |
+|                                            Appends to Outbox      |
+|                                                      v            |
+|                                                Sync Queue         |
++----------------------------------------------------|--------------+
+                                                     |
+                                         Pushes changes when online
+                                                     v
++-------------------------------------------------------------------+
+|                          SUPABASE CLOUD                           |
+|                                                                   |
+|  - Auth (Google & Discord OAuth)                                  |
+|  - Database (PostgreSQL with RLS)                                 |
+|  - Storage (Book files & covers)                                  |
++-------------------------------------------------------------------+
