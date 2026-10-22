@@ -10,7 +10,6 @@ function RootComponent() {
   return (
     <React.Fragment>
       <Outlet />
-
       <TanStackRouterDevtools />
     </React.Fragment>
   )
