@@ -15,6 +15,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AppLibraryRouteImport } from './routes/_app/library'
 import { Route as AppProfileRouteImport } from './routes/_app/profile'
 import { Route as AppSettingsRouteImport } from './routes/_app/settings'
+import { Route as AppSupportRouteImport } from './routes/_app/support'
 import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
 import { Route as ReaderBookIdRouteImport } from './routes/reader.$bookId'
 
@@ -47,6 +48,11 @@ const AppSettingsRoute = AppSettingsRouteImport.update({
   path: '/settings',
   getParentRoute: () => AppRoute,
 } as any)
+const AppSupportRoute = AppSupportRouteImport.update({
+  id: '/support',
+  path: '/support',
+  getParentRoute: () => AppRoute,
+} as any)
 const AuthCallbackRoute = AuthCallbackRouteImport.update({
   id: '/callback',
   path: '/callback',
@@ -64,6 +70,7 @@ export interface FileRoutesByFullPath {
   '/library': typeof AppLibraryRoute
   '/profile': typeof AppProfileRoute
   '/settings': typeof AppSettingsRoute
+  '/support': typeof AppSupportRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/reader/$bookId': typeof ReaderBookIdRoute
 }
@@ -73,6 +80,7 @@ export interface FileRoutesByTo {
   '/library': typeof AppLibraryRoute
   '/profile': typeof AppProfileRoute
   '/settings': typeof AppSettingsRoute
+  '/support': typeof AppSupportRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/reader/$bookId': typeof ReaderBookIdRoute
 }
@@ -84,6 +92,7 @@ export interface FileRoutesById {
   '/_app/library': typeof AppLibraryRoute
   '/_app/profile': typeof AppProfileRoute
   '/_app/settings': typeof AppSettingsRoute
+  '/_app/support': typeof AppSupportRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/reader/$bookId': typeof ReaderBookIdRoute
 }
@@ -95,6 +104,7 @@ export interface FileRouteTypes {
     | '/library'
     | '/profile'
     | '/settings'
+    | '/support'
     | '/auth/callback'
     | '/reader/$bookId'
   fileRoutesByTo: FileRoutesByTo
@@ -104,6 +114,7 @@ export interface FileRouteTypes {
     | '/library'
     | '/profile'
     | '/settings'
+    | '/support'
     | '/auth/callback'
     | '/reader/$bookId'
   id:
@@ -114,6 +125,7 @@ export interface FileRouteTypes {
     | '/_app/library'
     | '/_app/profile'
     | '/_app/settings'
+    | '/_app/support'
     | '/auth/callback'
     | '/reader/$bookId'
   fileRoutesById: FileRoutesById
@@ -169,6 +181,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppSettingsRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/support': {
+      id: '/_app/support'
+      path: '/support'
+      fullPath: '/support'
+      preLoaderRoute: typeof AppSupportRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/auth/callback': {
       id: '/auth/callback'
       path: '/callback'
@@ -190,12 +209,14 @@ interface AppRouteChildren {
   AppLibraryRoute: typeof AppLibraryRoute
   AppProfileRoute: typeof AppProfileRoute
   AppSettingsRoute: typeof AppSettingsRoute
+  AppSupportRoute: typeof AppSupportRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
   AppLibraryRoute: AppLibraryRoute,
   AppProfileRoute: AppProfileRoute,
   AppSettingsRoute: AppSettingsRoute,
+  AppSupportRoute: AppSupportRoute,
 }
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
