@@ -1,18 +1,21 @@
-import { createFileRoute, Outlet } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router'
+import { SidebarProvider } from '@/components/ui/sidebar'
+import { AppSidebar } from '@/components/Sidebar'
+import { Outlet } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/_app')({
-  component: RouteComponent,
+  component: AppLayout,
 })
 
-
-function RouteComponent() {
+function AppLayout() {
   return (
-    <div className="flex min-h-screen">
-      <aside className="w-64 border-r p-4">Sidebar</aside>
-      
-      <main className="flex-1 p-6">
-        <Outlet />
-      </main>
-    </div>
+    <SidebarProvider defaultOpen={true}>
+      <div className="flex min-h-screen w-full bg-[#111214] text-[#e8e8e6]">
+        <AppSidebar />
+        <main className="flex-1 overflow-y-auto">
+          <Outlet />
+        </main>
+      </div>
+    </SidebarProvider>
   )
 }
