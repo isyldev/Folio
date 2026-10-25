@@ -1,3 +1,5 @@
+import { LibrarySearchInput } from '@/components/library/LibrarySeachInput'
+import { NotificationPopover } from '@/components/library/NotificationPopOver'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/_app/library')({
@@ -5,5 +7,9 @@ export const Route = createFileRoute('/_app/library')({
 })
 
 function RouteComponent() {
-  return <div>Hello "/_app/library"!</div>
+  return <div className='h-screen w-full p-6 flex justify-center gap-5'>
+    <LibrarySearchInput />
+    <NotificationPopover />
+
+  </div>
 }

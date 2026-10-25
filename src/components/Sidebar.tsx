@@ -14,7 +14,7 @@ import {
 import { Link } from '@tanstack/react-router'
 import FolioLogo from './ui/FolioLogo'
 import { LibraryFilter } from './ui/page-assets/library/LibraryFilter'
-import { SidebarProfileFooter } from './ui/sidebar/SidebarProfileFooter'
+import { SidebarProfileFooter } from './sidebar/SidebarProfileFooter'
 
 export function AppSidebar() {
   return (
