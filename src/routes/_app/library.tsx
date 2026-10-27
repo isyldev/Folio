@@ -1,3 +1,4 @@
+import { BookCard } from '@/components/library/BookCard'
 import { FormatFilterToggle } from '@/components/library/FormatFilterToggle'
 import { LibraryHeader } from '@/components/library/LibraryHeader'
 import { LibrarySearchInput } from '@/components/library/LibrarySeachInput'
@@ -24,6 +25,10 @@ function RouteComponent() {
     <div>
       <FormatFilterToggle />
       <LibrarySortDropdown />
+    </div>
+
+    <div>
+      <BookCard />
     </div>
 
   </div>
