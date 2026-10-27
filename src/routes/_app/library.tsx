@@ -1,4 +1,6 @@
+import { LibraryHeader } from '@/components/library/LibraryHeader'
 import { LibrarySearchInput } from '@/components/library/LibrarySeachInput'
+import { LibraryViewToggle } from '@/components/library/LibraryViewToggle'
 import { NotificationPopover } from '@/components/library/NotificationPopOver'
 import { createFileRoute } from '@tanstack/react-router'
 
@@ -7,9 +9,15 @@ export const Route = createFileRoute('/_app/library')({
 })
 
 function RouteComponent() {
-  return <div className='h-screen w-full p-6 flex justify-center gap-5'>
-    <LibrarySearchInput />
-    <NotificationPopover />
+  return <div className='h-fit w-full p-6 flex flex-col gap-5'>
+    <div>
+      <LibrarySearchInput />
+      <NotificationPopover />
+    </div>
+    <div className="flex items-end justify-between">
+      <LibraryHeader />
+      <LibraryViewToggle />
+    </div>
 
   </div>
 }

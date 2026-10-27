@@ -53,7 +53,7 @@ const INITIAL_NOTIFICATIONS: NotificationItem[] = [
     iconColor: 'text-[#8a8f98]',
   },
   {
-    id: '3',
+    id: '4',
     title: 'A strong reading week',
     description: 'You read for 4 hours across 3 books.',
     timestamp: 'Monday',
@@ -63,7 +63,7 @@ const INITIAL_NOTIFICATIONS: NotificationItem[] = [
     iconColor: 'text-[#8a8f98]',
   },
   {
-    id: '3',
+    id: '5',
     title: 'A strong reading week',
     description: 'You read for 4 hours across 3 books.',
     timestamp: 'Monday',
@@ -73,7 +73,7 @@ const INITIAL_NOTIFICATIONS: NotificationItem[] = [
     iconColor: 'text-[#8a8f98]',
   },
   {
-    id: '3',
+    id: '6',
     title: 'A strong reading week',
     description: 'You read for 4 hours across 3 books.',
     timestamp: 'Monday',
@@ -83,7 +83,7 @@ const INITIAL_NOTIFICATIONS: NotificationItem[] = [
     iconColor: 'text-[#8a8f98]',
   },
   {
-    id: '3',
+    id: '7',
     title: 'A strong reading week',
     description: 'You read for 4 hours across 3 books.',
     timestamp: 'Monday',
@@ -106,30 +106,26 @@ export function NotificationPopover() {
 
   return (
     <Popover>
-      <PopoverTrigger asChild className='h-fit'>
-        <Button
-          variant="outline"
-          size="icon"
-          className="relative h-10 w-10 rounded-xl border-[#222428] bg-[#141518] hover:bg-[#1a1b1e] hover:text-white transition-colors"
-        >
-          <Bell className="h-4 w-4 text-[#a0a3a8]" />
-          {unreadCount > 0 && (
-            <span className="absolute right-2.5 top-2.5 h-1.5 w-1.5 rounded-full bg-[#4c82f7] ring-2 ring-[#0c0d0e]" />
-          )}
-        </Button>
+      <PopoverTrigger
+        className="relative flex items-center justify-center h-9 w-9 rounded-lg border border-[#222428] bg-[#141518] transition-colors hover:bg-[#1a1b1e] hover:text-white"
+      >
+        <Bell className="h-4 w-4 text-[#a0a3a8]" />
+        {unreadCount > 0 && (
+          <span className="absolute right-2.5 top-2.5 h-1.5 w-1.5 rounded-full bg-[#4c82f7] ring-2 ring-[#0c0d0e]" />
+        )}
       </PopoverTrigger>
 
       <PopoverContent
         align="end"
         sideOffset={8}
-        className="w-65 md:w-95 border-[#222428] bg-[#141518] p-0 text-white shadow-2xl rounded-2xl overflow-hidden"
+        className="w-65 md:w-95 border-[#222428] bg-[#141518] p-0 text-white shadow-2xl rounded-lg overflow-hidden"
       >
         {/* Header Section */}
-        <div className="flex items-center justify-between p-4 pb-3">
+        <div className="flex items-center justify-between px-2.5 py-4 md:p-4 pb-3">
           <div className="flex items-center gap-2">
             <h4 className="text-base font-semibold text-white">Notifications</h4>
             {unreadCount > 0 && (
-              <Badge className="bg-[#1e2638] text-[#4c82f7] hover:bg-[#1e2638] text-[11px] font-medium px-2 py-0.5 border-0 rounded-full">
+              <Badge className="hidden md:block bg-[#1e2638] text-[#4c82f7] hover:bg-[#1e2638] text-[11px] font-medium px-2 py-0.5 border-0 rounded-full">
                 {unreadCount} new
               </Badge>
             )}
@@ -152,7 +148,7 @@ export function NotificationPopover() {
             return (
               <div
                 key={item.id}
-                className="flex items-start gap-3.5 p-2.5 transition-colors hover:bg-[#18191d] group cursor-pointer"
+                className="flex items-start gap-3.5 p-2.5 md:p-4 transition-colors hover:bg-[#18191d] group cursor-pointer"
               >
 
                 {/* Content */}

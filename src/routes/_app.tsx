@@ -10,11 +10,9 @@ export const Route = createFileRoute('/_app')({
 function AppLayout() {
   return (
     <SidebarProvider defaultOpen={true}>
-      <div className="flex min-h-screen w-full bg-[#111214] text-[#e8e8e6]">
+      <div className="flex justify-center overflow-hidden min-h-screen w-full text-[#e8e8e6]">
         <AppSidebar />
-        <main className="flex-1 overflow-y-auto">
-          <Outlet />
-        </main>
+        <Outlet />
       </div>
     </SidebarProvider>
   )
